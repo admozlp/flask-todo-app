@@ -8,53 +8,87 @@
     <title>Todo App</title>
 </head>
 <body>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/">Ana Sayfa</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/about">Hakkımızda</a>
+        </li>
+      </ul>
 
-    <div style="margin-top: 100px;" class="container">
-        <h3>Todo List</h3>
-        <hr>
-        <form  action = "/add" method="POST">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Todo Ekle</label>
-                <input  name = "title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Spor..."><br>
-                <button type="submit" class="btn btn-danger">Ekle</button>
-              </div>
-              <hr>
-        </form>
-
-        {% if todos %}
-        <table style="background-color: black;" class="table">
-            <thead>
-              <tr style="color: white;">
-                <th scope="col">ID</th>
-                <th scope="col">Todo Başlık</th>
-                <th scope="col">Todo Durum</th>
-                <th scope="col">Güncelle</th>
-                <th scope="col">Sil</th>
-              </tr>
-            </thead>
-            <tbody>
-               
-                    {% for todo in todos %}
-                    <tr style="color: white;">
-                        <th scope="row">{{todo.id}}</th>
-                        <td>{{todo.title}}</td>
-                        {% if todo.complete %}
-                        <td>Tamamlandı</td>
-                        {% else %}
-                        <td>Tamamlanmadı</td>
-                        {% endif %}
-                        <td><a href="/edit/{{todo.id}}" class="btn btn-danger">Güncelle</a></td>
-                        <td><a href="/delete/{{todo.id}}" class="btn btn-danger">Sil</a></td>
-                      </tr>
-                    {% endfor %}
-                {% else %}
-                <div class="alert alert-warning" role="alert">
-                  Henüz hiç ToDo eklemediniz
-                </div>
-               {% endif %}
-            </tbody>
-          </table>
+      <ul class="navbar-nav ml-auto">
+        {% if session["logged_in"] %}
+        <li class="nav-item active">
+          <a class="nav-link" href="/logout">Çıkış</a>
+        </li>
+        {% else %}
+        <li class="nav-item active">
+          <a class="nav-link" href="/register">Kayıt Ol</a>
+         </li>
+          <li class="nav-item active">
+          <a class="nav-link" href="/login">Giriş</a>
+          </li>
+        {% endif %}
+      </ul>
     </div>
+  </nav><br><br>
+  {% include  "includes/messages.html" %} 
+
+   {% if session["logged_in"] %}
+   <div style="margin-top: 50px;" class="container">
+    <h3>Todo List</h3>
+    <hr>
+    <form  action = "/add" method="POST">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Todo Ekle</label>
+            <input  name = "title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Spor..."><br>
+            <button type="submit" class="btn btn-danger">Ekle</button>
+          </div>
+          <hr>
+    </form>
+
+    {% if todos %}
+    <table style="background-color: black;" class="table">
+        <thead>
+          <tr style="color: white;">
+            <th scope="col">ID</th>
+            <th scope="col">Todo Başlık</th>
+            <th scope="col">Todo Durum</th>
+            <th scope="col">Güncelle</th>
+            <th scope="col">Sil</th>
+          </tr>
+        </thead>
+        <tbody>
+           
+                {% for todo in todos %}
+                <tr style="color: white;">
+                    <th scope="row">{{todo.id}}</th>
+                    <td>{{todo.title}}</td>
+                    {% if todo.complete %}
+                    <td>Tamamlandı</td>
+                    {% else %}
+                    <td>Tamamlanmadı</td>
+                    {% endif %}
+                    <td><a href="/edit/{{todo.id}}" class="btn btn-danger">Güncelle</a></td>
+                    <td><a href="/delete/{{todo.id}}" class="btn btn-danger">Sil</a></td>
+                  </tr>
+                {% endfor %}
+            {% else %}
+            <div class="alert alert-warning" role="alert">                               
+              Henüz hiç ToDo eklemediniz                 
+            </div>
+           {% endif %}
+        </tbody>
+      </table>
+</div>
+{% else %}
+<br><br>
+<div class="alert alert-danger">ToDo Oluşturmak İçin Giriş Yapın Veya Kaydolun</div>
+   {% endif %}
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

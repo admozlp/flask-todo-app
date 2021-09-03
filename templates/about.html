@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Todo Güncelle</title>
+    <title>Todo App</title>
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -37,30 +37,15 @@
     </div>
   </nav>
 
-    <div class="container" style="margin-top: 100px;">
-        <h3>Bilgileri Güncelle</h3>
-        <hr>
-        <small>Todo Mevcut Başlık : <b>{{todo.title}}</b></small>
-        <form method="POST">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Todo Yeni Başlık:</label>
-            <input  name = "title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Yeni Başlık"><br>
-            {% if todo.complete %}
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" name = "durum" type="checkbox" id="inlineCheckbox1" value="option1" checked >
-                <label class="form-check-label" for="inlineCheckbox1">Todo Durum</label>
-              </div><br><br>
-            {% else %}
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" name = "durum" type="checkbox" id="inlineCheckbox1" value="option1"  >
-                <label class="form-check-label" for="inlineCheckbox1">Todo Durum</label>
-              </div><br><br>
-            {% endif %}
-        </form>
-            <button type="submit" class="btn btn-danger">Güncelle</button>
-          </div>
-    </div>
- 
+  <form style="margin-top: 200px; text-align: center;">
+    <h3>Hakkımda</h3>
+    <hr>
+    Merhaba ben Adem Özalp Kırşehir Ahi Evran Üniversitesi 3. sınıf öğrencisiyim. C programlama dili ile  
+    yazılılıma başladım, algoritma yeteneğimi geliştirdikten sonra C# ile masaüstü uygulamalar yaparak devam ettim. 
+    2.sınıfın başlarından itibaren web geliştirmeye yöneldim. şu an python un Flask ve Django frameworklerini öğrenmekteyim
+    <hr>
+
+  </form>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
